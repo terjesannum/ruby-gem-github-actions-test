@@ -17,6 +17,8 @@ jobs:
         uses: actions/setup-ruby@v1
         with:
           ruby-version: 2.6.x
+      - name: Install rspec
+        run: gem install
       - name: Run rspec
         run: rspec
       - name: Build gem
