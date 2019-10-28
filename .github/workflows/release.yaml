@@ -30,4 +30,4 @@ jobs:
           pwd
           ls
           git rev-parse HEAD
-          ruby -I lib -r Testgem -e 'print Testgem::VERSION'
+          ruby -I lib -r testgem -e 'print Testgem::VERSION'
