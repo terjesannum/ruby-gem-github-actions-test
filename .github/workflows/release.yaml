@@ -22,7 +22,7 @@ jobs:
       - name: Run rspec
         run: rspec
       - name: Build gem
-        run: echo Starting build_gem
+        run: gem build testgem.gemspec
       - name: Publish gem
         run: echo Starting publish_gem
       - name: Tag release
