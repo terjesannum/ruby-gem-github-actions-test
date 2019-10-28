@@ -27,6 +27,7 @@ jobs:
         run: echo Starting publish_gem
       - name: Tag release
         run: |
-          commit=$(git rev-parse HEAD)
-          tag=$(ruby -I lib -r Testgem -e 'print Testgem::VERSION')
-          echo Tag $commit as $tag
+          pwd
+          ls
+          git rev-parse HEAD
+          ruby -I lib -r Testgem -e 'print Testgem::VERSION'
