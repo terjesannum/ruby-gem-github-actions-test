@@ -18,7 +18,7 @@ jobs:
         with:
           ruby-version: 2.6.x
       - name: Install rspec
-        run: gem install
+        run: gem install rspec
       - name: Run rspec
         run: rspec
       - name: Build gem
