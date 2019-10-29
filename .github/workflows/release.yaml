@@ -9,6 +9,8 @@ on:
 
 jobs:
   release:
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -24,11 +26,13 @@ jobs:
       - name: Build gem
         run: gem build testgem.gemspec
       - name: Tag release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           commit=$(git rev-parse HEAD)
           version=$(ruby -I lib -r testgem -e 'print Testgem::VERSION')
-          curl -s -X POST https://api.github.com/repos/terjesannum/ruby-gem-github-actions-test/git/refs -H "Authorization: token $GITHUB_TOKEN" -d "{ \"ref\": \"refs/tags/$version\", \"sha\": \"$commit\" }"
+          curl -s -X POST https://api.github.com/repos/$GITHUB_REPOSITORY/git/refs -H "Authorization: token $GITHUB_TOKEN" -d "{ \"ref\": \"refs/tags/$version\", \"sha\": \"$commit\" }"
       - name: Publish gem
-        run: echo todo publish_gem
+        run: |
+          mkdir -p $HOME/.gem
+          printf -- "---\n:github: Bearer ${GITHUB_TOKEN}\n" > $HOME/.gem/credentials
+          version=$(ruby -I lib -r testgem -e 'print Testgem::VERSION')
+          gem push --key github --host https://rubygems.pkg.github.com/$GITHUB_REPOSITORY testgem-$version.gem
