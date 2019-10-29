@@ -25,6 +25,10 @@ jobs:
         run: rspec
       - name: Build gem
         run: gem build testgem.gemspec
+      - name: Verify unreleased
+        run: |
+          version=$(ruby -I lib -r testgem -e 'print Testgem::VERSION')
+          ! curl -s https://api.github.com/repos/$GITHUB_REPOSITORY/git/refs | grep -q "\"refs/tags/$version\""
       - name: Tag release
         run: |
           commit=$(git rev-parse HEAD)
