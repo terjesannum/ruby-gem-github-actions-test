@@ -34,5 +34,6 @@ jobs:
         run: |
           mkdir -p $HOME/.gem
           printf -- "---\n:github: Bearer ${GITHUB_TOKEN}\n" > $HOME/.gem/credentials
+          chmod 0600 $HOME/.gem/credentials
           version=$(ruby -I lib -r testgem -e 'print Testgem::VERSION')
           gem push --key github --host https://rubygems.pkg.github.com/$GITHUB_REPOSITORY testgem-$version.gem
