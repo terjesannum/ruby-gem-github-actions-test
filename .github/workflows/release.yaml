@@ -19,10 +19,10 @@ jobs:
         uses: actions/setup-ruby@v1
         with:
           ruby-version: 2.6.x
-      - name: Install rspec
-        run: gem install rspec
+      - name: Install bundler
+        run: gem install bundler
       - name: Run rspec
-        run: rspec
+        run: bundle exec rspec spec
       - name: Build gem
         run: gem build testgem.gemspec
       - name: Verify unreleased
