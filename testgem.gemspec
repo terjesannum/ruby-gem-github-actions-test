@@ -13,6 +13,8 @@ Gem::Specification.new do |s|
   s.files         = `git ls-files -z lib`.split("\x0")
   s.require_paths = ["lib"]
   
+  s.add_dependency 'logfmt', '= 0.0.9'
+
   s.required_ruby_version = '>= 2.3.0'
   s.add_development_dependency "rspec", "~> 3.0"
 
