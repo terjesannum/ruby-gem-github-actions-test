@@ -1,5 +1,6 @@
 require "testgem"
 require "logfmt"
+require "nais/log/parser"
 
 RSpec.describe Testgem do
 
