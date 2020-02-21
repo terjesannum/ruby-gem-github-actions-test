@@ -12,7 +12,7 @@ RSpec.describe Testgem do
   end
 
   it "has correct nais-log-parser" do
-    expect(Logfmt::VERSION).to eq('0.39.4')
+    expect(Nais::Log::Parser::VERSION).to eq('0.39.4')
   end
 
   t = Testgem::Test.new
